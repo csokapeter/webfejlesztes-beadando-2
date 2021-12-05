@@ -1,14 +1,14 @@
 package murraco.repository;
 
-import murraco.model.Task;
+import murraco.model.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-public interface TaskRepository extends JpaRepository<Task, Long> {
-    Optional<Task> findTaskById(Long id);
+public interface JobRepository extends JpaRepository<Job, Long> {
+    Optional<Job> findJobById(Long id);
 
     @Transactional
-    void deleteTaskById(Long id);
+    void deleteJobById(Long id);
 }

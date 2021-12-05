@@ -3,7 +3,7 @@ package murraco.model;
 import javax.persistence.*;
 
 @Entity
-public class Task {
+public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
@@ -13,9 +13,9 @@ public class Task {
     private String licencePlate;
     private String problemDescription;
 
-    public Task() {}
+    public Job() {}
 
-    public Task(Long id, String name, String phone, String licencePlate, String problemDescription) {
+    public Job(Long id, String name, String phone, String licencePlate, String problemDescription) {
         this.id = id;
         this.name = name;
         this.phone = phone;
