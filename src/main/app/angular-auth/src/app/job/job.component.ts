@@ -11,6 +11,8 @@ import { JobService } from './job.service';
 })
 export class JobComponent implements OnInit {
   jobs: Job[];
+  editJob: Job;
+  deleteJob: Job;
 
   constructor(private jobService: JobService) {}
 
@@ -39,6 +41,7 @@ export class JobComponent implements OnInit {
       button.setAttribute('data-target', '#addJobModal');
     }
     else if(mode === 'edit'){
+      this.editJob = job;
       button.setAttribute('data-target', '#updateJobModal');
     }
     else if(mode === 'delete'){
@@ -61,8 +64,16 @@ export class JobComponent implements OnInit {
     );
   }
 
-  public onUpdateJob(editForm: NgForm): void{
-    
+  public onUpdateJob(job: Job): void{
+    this.jobService.updateJob(job).subscribe(
+      (res: Job) => {
+        console.log(res);
+        this.getJobs();
+      },
+      (err: HttpErrorResponse) => {
+        alert("No permission");
+      }
+    );
   }
 
   public onDeleteJob(): void{
