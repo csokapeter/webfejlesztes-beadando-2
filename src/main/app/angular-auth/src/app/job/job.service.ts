@@ -25,7 +25,7 @@ export class JobService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${[cookies['jwt']]}`
         });
-        return this.http.post<Job>(`${this.apiServerUrl}/job/add`, job);
+        return this.http.post<Job>(`${this.apiServerUrl}/job/add`, job, {headers: headers});
     }
 
     public updateJob(job: Job): Observable<Job> {
@@ -34,7 +34,7 @@ export class JobService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${[cookies['jwt']]}`
         });
-        return this.http.put<Job>(`${this.apiServerUrl}/job/update`, job);
+        return this.http.put<Job>(`${this.apiServerUrl}/job/update`, job, {headers: headers});
     }
 
     public deleteJob(jobId: number): Observable<void> {
@@ -43,6 +43,6 @@ export class JobService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${[cookies['jwt']]}`
         });
-        return this.http.delete<void>(`${this.apiServerUrl}/job/delete/${jobId}`);
+        return this.http.delete<void>(`${this.apiServerUrl}/job/delete/${jobId}`, {headers: headers});
     }
 }
