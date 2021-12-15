@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
       this.message = "Please log in!";
       Emitters.authEmitter.emit(false);
     } else {
-      this.message = "You are logged in.";
+      this.message = "";
       Emitters.authEmitter.emit(true);
     }
   }
