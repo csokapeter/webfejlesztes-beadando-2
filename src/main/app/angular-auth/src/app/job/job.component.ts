@@ -20,7 +20,6 @@ export class JobComponent implements OnInit {
   public getJobs(): void {
     this.jobService.getJobs().subscribe(
       (res: Job[]) => {
-        console.log(`A jobok: ${res}`);
         this.jobs = res;
       },
       (err: HttpErrorResponse) => {

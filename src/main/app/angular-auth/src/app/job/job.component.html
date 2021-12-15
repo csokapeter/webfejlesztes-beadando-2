@@ -1,3 +1,20 @@
-<div *ngFor="let job of jobs">
-<div>{{job.name}}</div>
-</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">phone</th>
+        <th scope="col">license plate</th>
+        <th scope="col">problem description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let job of jobs">
+        <td>{{job.id}}</td>
+        <td>{{job.name}}</td>
+        <td>{{job.phone}}</td>
+        <td>{{job.licencePlate}}</td>
+        <td>{{job.problemDescription}}</td>
+      </tr>
+    </tbody>
+</table>
