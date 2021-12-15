@@ -1,5 +1,5 @@
 <div id="main-container">
-    <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Job <span class="sr-only">(current)</span></a>
+    <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Job</a>
     <table class="table">
         <thead>
         <tr>
@@ -18,21 +18,21 @@
             <td>{{job.licencePlate}}</td>
             <td>{{job.problemDescription}}</td>
             <td>
-                <a (click)="onOpenModal(job, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                <a (click)="onOpenModal(job, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                <a (click)="onOpenModal(job, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit">edit</a>
+                <a (click)="onOpenModal(job, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete">delete</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<div class="modal fade" id="addJobModal" tabindex="-1" role="dialog" aria-labelledby="addJobModalLabel" aria-hidden="true">
+<div class="modal fade" id="addJobModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addJobModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="addJobModalLabel">Add Job</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
             </button>
          </div>
          <div class="modal-body">
@@ -54,7 +54,7 @@
                 <input type="text" ngModel name="problemDescription" class="form-control" id="problemDescription" placeholder="problem description" required>
                 </div>
                 <div class="modal-footer">
-                <button type="button" id="add-job-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" id="add-job-form" data-bs-dismiss="modal">Close</button>
                 <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
                 </div>
             </form>
@@ -67,33 +67,33 @@
     <div class="modal-dialog" role="document">
        <div class="modal-content">
           <div class="modal-header">
-             <h5 class="modal-title" id="updateJobModalLabel">Edit Job {{editJob.name}}</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
+             <h5 class="modal-title" id="updateJobModalLabel">Edit Job</h5>
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
              <form #editForm="ngForm">
+                <input type="hidden" ngModel="{{editJob?.id}}" name="id" class="form-control" id="id" placeholder="id">
                 <div class="form-group">
                    <label for="name">Name</label>
-                   <input type="text" ngModel="{{editJob.name}}" name="name" class="form-control" id="name" placeholder="Name">
+                   <input type="text" ngModel="{{editJob?.name}}" name="name" class="form-control" id="name" placeholder="Name">
                 </div>
-                <input type="hidden" ngModel="{{editJob.id}}" name="id" class="form-control" id="id" placeholder="id">
                 <div class="form-group">
                    <label for="phone">phone</label>
-                   <input type="text" ngModel="{{editJob.phone}}" name="phone" class="form-control" id="phone" placeholder="phone number">
+                   <input type="text" ngModel="{{editJob?.phone}}" name="phone" class="form-control" id="phone" placeholder="phone number">
                 </div>
                 <div class="form-group">
                    <label for="text">licence plate</label>
-                   <input type="text" ngModel="{{editJob.licencePlate}}" name="licencePlate" class="form-control" id="licencePlate" placeholder="licence plate">
+                   <input type="text" ngModel="{{editJob?.licencePlate}}" name="licencePlate" class="form-control" id="licencePlate" placeholder="licence plate">
                 </div>
                 <div class="form-group">
                    <label for="phone">problem description</label>
-                   <input type="text" ngModel="{{editJob.problemDescription}}" name="problemDescription" class="form-control" id="problemDescription" placeholder="problem description">
+                   <input type="text" ngModel="{{editJob?.problemDescription}}" name="problemDescription" class="form-control" id="problemDescription" placeholder="problem description">
                 </div>
                 <div class="modal-footer">
-                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                   <button (click)="onUpdateJob(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button (click)="onUpdateJob(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
                 </div>
              </form>
           </div>
@@ -106,14 +106,14 @@
        <div class="modal-content">
           <div class="modal-header">
              <h5 class="modal-title" id="deleteModelLabel">Delete Job</h5>
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
-             </button>
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
           </div>
           <div class="modal-body">
-             <p>Are you sure you want to delete job {{deleteJob.name}}?</p>
+             <p>Are you sure you want to delete this job?</p>
              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-secondary" id="delete-job-form" data-bs-dismiss="modal">No</button>
                 <button (click)="onDeleteJob(deleteJob.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
              </div>
           </div>

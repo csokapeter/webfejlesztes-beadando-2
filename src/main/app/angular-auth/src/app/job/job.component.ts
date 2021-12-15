@@ -36,16 +36,17 @@ export class JobComponent implements OnInit {
     const button = document.createElement('button');
     button.type = 'button';
     button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-bs-toggle', 'modal');
     if(mode === 'add'){
-      button.setAttribute('data-target', '#addJobModal');
+      button.setAttribute('data-bs-target', '#addJobModal');
     }
     else if(mode === 'edit'){
       this.editJob = job;
-      button.setAttribute('data-target', '#updateJobModal');
+      button.setAttribute('data-bs-target', '#updateJobModal');
     }
     else if(mode === 'delete'){
-      button.setAttribute('data-target', '#deleteJobModal');
+      this.deleteJob = job;
+      button.setAttribute('data-bs-target', '#deleteJobModal');
     }
     container?.appendChild(button);
     button.click();
@@ -57,9 +58,11 @@ export class JobComponent implements OnInit {
       (res: Job) => {
         console.log(res);
         this.getJobs();
+        addForm.reset();
       },
       (err: HttpErrorResponse) => {
         alert("No permission");
+        addForm.reset();
       }
     );
   }
@@ -76,7 +79,16 @@ export class JobComponent implements OnInit {
     );
   }
 
-  public onDeleteJob(): void{
-
+  public onDeleteJob(jobId: number): void{
+    document.getElementById('delete-job-form')?.click();
+    this.jobService.deleteJob(jobId).subscribe(
+      (res: void) => {
+        console.log(res);
+        this.getJobs();
+      },
+      (err: HttpErrorResponse) => {
+        alert("No permission");
+      }
+    );
   }
 }
